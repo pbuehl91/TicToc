@@ -8,7 +8,7 @@
  * Java Time Zone IDs
  */
 var JAVA_TIME_ZONES_POSITIVE = [];
-var JAVA_TIME_ZONES_NEGATIVE = [];
+var JAVA_TIME_ZONES_NEGATIVE = []; 
 
 JAVA_TIME_ZONES_POSITIVE[0] = [
     'Europe/Guernsey',
@@ -628,12 +628,33 @@ JAVA_TIME_ZONES_NEGATIVE[12] = [
 exports.getListOfTimeZones = getListOfTimeZones;
 
 /**
- * Return list of Java Time Zone IDs.
+ * Return list of Java Time Zone IDs (validation process).
  *
  * @param {offset} TimeZone offset
- * @return {string} TimeZone ID
+ * @return {list} List of time zone ids
  * @public
  */
 function getListOfTimeZones(offset) {
-    return "";
+    if(isNaN(offset))
+        throw "Offset needs to be a number";
+
+    var index = offset/60;
+
+    if( x % 1 != 0 || Math.abs(index) > 12 )
+        throw "Offset is invalid";
+
+    return findTimeZone(index);
+}
+
+/**
+ * Find Java Time Zones based on offset index.
+ *
+ * @param {index} TimeZone offset index
+ * @return {list} List of TimeZone IDs
+ * @private
+ */
+function findTimeZone(index) {
+    if (index >= 0)
+        return JAVA_TIME_ZONES_POSITIVE[index];
+    return JAVA_TIME_ZONES_NEGATIVE[index];
 }
