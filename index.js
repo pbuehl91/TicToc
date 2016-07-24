@@ -656,5 +656,5 @@ function getListOfTimeZones(offset) {
 function findTimeZone(index) {
     if (index >= 0)
         return JAVA_TIME_ZONES_POSITIVE[index];
-    return JAVA_TIME_ZONES_NEGATIVE[index];
+    return JAVA_TIME_ZONES_NEGATIVE[Math.abs(index)];
 }
