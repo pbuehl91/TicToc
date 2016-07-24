@@ -47,7 +47,7 @@ var JAVA_TIME_ZONES =
 exports.getListOfTimeZones = getListOfTimeZones;
 
 /**
- * Format object to media type.
+ * Return list of Java Time Zone IDs.
  *
  * @param {offset} TimeZone offset
  * @return {string} TimeZone ID
